@@ -23,26 +23,15 @@
           <th scope="col">Title</th>
           <th scope="col">Description</th>
           <th scope="col">Completed</th>
-        </tr>
+          <th scope= "col">Completed Date<th/>
       </thead>
       <tbody>
         {% for todo in todos %}
         <tr>
           <td>{{ todo.title }}</td>
-          <td>{{ todo.description }}</td>
-         
-          {% comment %} {%if todo.completed%}
-            <form>
-              <button  <input class="form-check-input mt-0" type="radio" value="" aria-label="Radio button for following text input">></button>
-            </form>
-          {%else%}
-            <form>
-              <button>  </button>
-            </form>
-
-          {%endif%} {% endcomment %}
-          
+          <td>{{ todo.description }}</td> 
           <td>{{todo.completed}}</td>
+          <td>{{todo.completed_at}}</td>
         </tr>
         {% endfor %}
       </tbody>

@@ -11,10 +11,19 @@ def cadastrar_tarefas(request):
   if request.method == 'POST':
     title = request.POST.get('title')
     description = request.POST.get('description')
-    todo =Todo(title=title, description=description)
+    completed_at = request.POST.get('completed_at')
+    todo =Todo(title=title, description=description, completed_at = completed_at)
     todo.save()
+
+    print(todo.completed_at)
     return redirect('listar_tarefas')
   return render(request, 'cadastrar_tarefas.html')
+
+# def concluir_tarefa(request):
+#   todo = request.Post.get('completed')
+#   if (todo):
+#     todo.completed = True
+#     todo.save()
   
 
 
