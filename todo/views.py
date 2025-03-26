@@ -19,6 +19,26 @@ def cadastrar_tarefas(request):
     return redirect('listar_tarefas')
   return render(request, 'cadastrar_tarefas.html')
 
+
+
+def deletar_tarefa(request,id):
+  todo = Todo.objects.filter(pk=id).delete()
+  
+  return redirect('listar_tarefas')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # def concluir_tarefa(request):
 #   todo = request.Post.get('completed')
 #   if (todo):
