@@ -24,6 +24,8 @@
           <th scope="col">Description</th>
           <th scope="col">Completed</th>
           <th scope= "col">Completed Date<th/>
+          <th scope="col">Excluir</th>
+          <th scope="col">Editar</th>
       </thead>
       <tbody>
         {% for todo in todos %}
@@ -32,6 +34,10 @@
           <td>{{ todo.description }}</td> 
           <td>{{todo.completed}}</td>
           <td>{{todo.completed_at}}</td>
+          <td>
+            <a href="{% url 'deletar_tarefa' todo.id%}">Delete</a>
+          </td>
+
         </tr>
         {% endfor %}
       </tbody>
