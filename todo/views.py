@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404, render,redirect
 from django.http import HttpResponse
 from .models import Todo
 
@@ -23,8 +23,17 @@ def cadastrar_tarefas(request):
 
 def deletar_tarefa(request,id):
   todo = Todo.objects.filter(pk=id).delete()
-  
   return redirect('listar_tarefas')
+
+
+def completar_tarefa(request, id):
+    if request.method == 'POST':
+      todo = get_object_or_404(Todo, pk=id)
+      todo.completed = True
+      todo.save()
+      
+    print(todo.completed)
+    return redirect('listar_tarefas')
 
 
 
