@@ -20,49 +20,58 @@
   <br>
   <div class="container">
     <table class="table table-dark table-striped">
-      <thead>
-        <tr>
-          <th scope="col">Title</th>
-          <th scope="col">Description</th>
-          <th scope="col">Completed</th>
-          <th scope= "col">Completed Date<th/>
-          <th scope="col">Excluir</th>
-          <th scope="col">Editar</th>
-      </thead>
-      <tbody>
-        {% for todo in todos %}
-        <tr>
-          <td>{{ todo.title }}</td>
-          <td>{{ todo.description }}</td> 
-          <td>
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Completed</th>
+      <th scope="col">Completed Date</th>
+      <th scope="col">Excluir</th>
+      <th scope="col">Editar</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for todo in todos %}
+    <tr>
+      <td>{{ todo.title }}</td>
+      <td>{{ todo.description }}</td>
+      <td>
         <form method="POST" action="{% url 'completar_tarefa' todo.id %}">
           {% csrf_token %}
-          {%if not todo.completed%}
-          <button type="submit" class="btn btn-danger">
-            Completar</button>
-          {%else%}
-          <p class="btn btn-primary">
-            Completo
-          </p>
-          {%endif%}
+          {% if not todo.completed %}
+            <button id='completo' type="submit" class="btn btn-warning">Completar</button>
+          {% else %}
+            <p class="btn btn-success">Completo</p>
+          {% endif %}
         </form>
-        </td>
-          <td>{{todo.completed_at}}</td>
-          <td>
-            <a href="{% url 'deletar_tarefa' todo.id%}">Delete</a>
-          </td>
-
-        </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+      </td>
+      <td>{{ todo.completed_at }}</td>
+      <td>
+        <a class='btn btn-danger' id='delete' href="{% url 'deletar_tarefa' todo.id %}">Delete</a>
+      </td>
+      <td>
+        
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-    crossorigin="anonymous"></script>
-
-
+    crossorigin="anonymous">
+  </script>
+  <script>
+    document.querySelectorAll('#delete').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        if (!confirm('Tem certeza que deseja excluir esta tarefa?')) {
+          e.preventDefault();
+        }
+      });
+    });
+  </script>
+  
 </body>
 
 </html>
