@@ -50,7 +50,7 @@
         <a class='btn btn-danger' id='delete' href="{% url 'deletar_tarefa' todo.id %}">Delete</a>
       </td>
       <td>
-        
+        <a class='btn btn-primary' href="{% url 'editar_tarefa' todo.id %}">Edit</a>
       </td>
     </tr>
     {% endfor %}
@@ -70,6 +70,7 @@
         }
       });
     });
+    
   </script>
   
 </body>
