@@ -45,7 +45,15 @@
           {% endif %}
         </form>
       </td>
-      <td>{{ todo.completed_at }}</td>
+      <td>           
+      {% if todo.completed_at and todo.completed_at == now %}   
+       <p class="fw-bold text-start">HOJE</p> 
+       {%else%}
+       <p>{{todo.completed_at}}</p>
+      {% endif %}
+
+
+      </td>
       <td>
         <a class='btn btn-danger' id='delete' href="{% url 'deletar_tarefa' todo.id %}">Delete</a>
       </td>

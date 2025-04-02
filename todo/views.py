@@ -2,10 +2,16 @@ from django.shortcuts import get_object_or_404, render,redirect
 from django.http import HttpResponse
 from .models import Todo
 from django.utils import timezone
+from datetime import datetime
+
 
 def listar_tarefas(request):
   todos = Todo.objects.all()
-  return render(request, 'listar_tarefas.html', {'todos': todos})
+  context = {
+    'todos': todos,
+    'now': timezone.now().date()
+  }
+  return render(request, 'listar_tarefas.html', context)
 
 # Create your views here.
 def cadastrar_tarefas(request):
